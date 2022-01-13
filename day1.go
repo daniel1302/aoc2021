@@ -63,14 +63,3 @@ func part2(input []int) int {
 
 	return part1(series)
 }
-
-// 199  A			0
-// 200  A B			1
-// 208  A B C		2
-// 210    B C D		3	A|B
-// 200 	A   C D		4	B|C
-// 207  A B   D		5	D|C
-// 240  A B C		6	A|D
-// 269    B C D		7	A|B
-// 260      C D		8
-// 263        D		9
