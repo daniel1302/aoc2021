@@ -2,7 +2,7 @@ use std::fs;
 use std::vec::Vec;
 
 fn main() -> std::io::Result<()> {
-    let input_str = fs::read_to_string("./inputs/day1.txt")?;
+    let input_str = fs::read_to_string("../inputs/day1.txt")?;
     let input: Vec<i32> = input_str.lines().filter_map(|x| x.parse::<i32>().ok() ).collect();
 
 

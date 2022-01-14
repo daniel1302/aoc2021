@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	input, err := readInput("./inputs/day1.txt")
+	input, err := readInput("../inputs/day1.txt")
 	if err != nil {
 		panic(err)
 	}
