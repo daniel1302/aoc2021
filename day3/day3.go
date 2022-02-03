@@ -75,8 +75,10 @@ func part2(input []string) int {
 	var tmp []string
 
 	for i := 0; i < len(input[0]) && len(oxygenGeneratorRating) > 1; i++ {
+
 		tmp = []string{}
 		for _, row := range oxygenGeneratorRating {
+
 			if (ones[i] >= zeros[i]) && row[i] == '1' || ones[i] < zeros[i] && row[i] == '0' {
 				tmp = append(tmp, row)
 			}
@@ -100,5 +102,7 @@ func part2(input []string) int {
 
 	i1, _ := strconv.ParseInt(oxygenGeneratorRating[0], 2, 64)
 	i2, _ := strconv.ParseInt(co2ScrubberRating[0], 2, 64)
+	fmt.Printf("%d|%d\n", i1, i2)
+
 	return int(i1) * int(i2)
 }

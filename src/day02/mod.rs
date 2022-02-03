@@ -1,5 +1,7 @@
 use std::fs;
 use std::vec::Vec;
+use std::result::Result;
+use std::error::Error;
 
 #[derive(Debug)]
 enum OpCode {
@@ -30,23 +32,6 @@ impl Op {
     }
 }
 
-fn main() -> std::io::Result<()> {
-    let input_str = fs::read_to_string("../inputs/day2.txt")?;
-
-    let input: Vec<Op> = input_str
-        .lines()
-        .map(|line| line.split_ascii_whitespace().collect())
-        .filter(|op: &Vec<&str>| op.len() == 2)
-        .map(|op: Vec<&str>| Op::new(op[0], op[1]))
-        .collect();
-        
-
-    println!("Part 1: {:?}", part1(&input));
-    println!("Part 2: {:?}", part2(&input));
-    
-    Ok(())
-}
-
 fn part1(input: &[Op]) -> i32 {
     let (mut x, mut y) = (0i32, 0i32);
     input.iter().for_each(|op| match op.code {
@@ -70,4 +55,22 @@ fn part2(input: &Vec<Op>) -> i32 {
     });
 
     x*y
+}
+
+pub fn run(input_file: &str) -> Result<(i32, i32), Box<dyn Error>> {
+    let input_str = fs::read_to_string(input_file)?;
+
+    let input: Vec<Op> = input_str
+        .lines()
+        .map(|line| line.split_ascii_whitespace().collect())
+        .filter(|op: &Vec<&str>| op.len() == 2)
+        .map(|op: Vec<&str>| Op::new(op[0], op[1]))
+        .collect();
+
+    Ok((part1(&input), part2(&input)))
+}
+
+#[test]
+fn test_run() {
+    assert_eq!(run("./inputs/day2.txt").unwrap(), (1250395, 1451210346))
 }
